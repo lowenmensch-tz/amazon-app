@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Amazon Appstore</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" type="text/css" media="screen" href="css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="css/all.css"><!--FontAwesome-->
+    <link rel="stylesheet" href="css/main.css">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@200;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-expand-md fixed-top justify-content-between" style="background-color: #040707">
+        
+        <img src="img/logo.png" class="d-inline-block align-top" alt="...">
+        
+        <form class="form-inline">
+            <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+            <button class="btn btn-secondary my-2 my-sm-0" type="submit" style="background-color: #ffb317;">
+                <a href="">
+                    <i class='bx bx-search-alt-2' style="color: black"></i>
+                </a>
+            </button>
+        </form>
+    </nav>
+        
+    <main role="main" class="container">
+
+        <section>
+
+            <div class="container">
+                <div class="container-fluid">
+
+
+                    <div class="row">
+                        <div class="btn-group col-md-12">
+                            <select class="form-control" id="category" onchange="populateDataCards();" ">
+                                <option selected disabled>Categorías</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div id="apps" class="row">
+                        
+                    </div>
+                <div>
+            </div>
+
+        </section>
+
+        <!-- Add app -->
+        <button id="formAddApp" class="btn my-2 my-sm-0 add-app" type="button" data-toggle="modal" data-target="#addAppModal" disabled>
+            <a>
+                <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);transform: ;msFilter:;"><path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"></path></svg>
+            </a>
+        </button>
+    
+    </main><!-- /.container -->
+
+
+
+    <!-- Modal Visualizar datos de la App-->
+    <div class="modal fade" id="appDataModal" tabindex="-1" role="dialog" aria-labelledby="appDataModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+        <div class="modal-content" id="appDataModalContent">
+
+        </div>
+        </div>
+    </div>
+
+    <!-- Modal Eliminar App-->
+    <div class="modal fade" id="deleteAppModal" tabindex="-1" role="dialog" aria-labelledby="deleteAppModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content" id="deleteAppModalContent">
+
+                <div class="modal-header">
+                    <h5 class="modal-title">Eliminar App</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p id="title-dody-delete-app-modal"></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                    <button type="button" class="btn btn-danger" onclick="deleteApp()">Sí</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Modal Formulario para agregar una app-->
+    <div class="modal fade" id="addAppModal" tabindex="-1" role="dialog" aria-labelledby="appDataModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+        <div class="modal-content" id="appDataModalContent">
+            
+            <div class="modal-header">
+                <h5 class="modal-title">Agregar App</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <label for="formGroupAddApp">Nombre</label>
+                    <input type="text" class="form-control" id="input-app-name" placeholder="Nombre de la app">
+
+                    <label for="formGroupAddApp">Desarrollador</label>
+                    <input type="text" class="form-control" id="input-developer-name" placeholder="Nombre del desarrollador">
+
+                    <label for="formGroupAddApp">Raiting</label>
+                    <select class="form-control" id="raiting-select">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                    </select>
+
+                    <label for="formGroupAddApp">Descripción</label>
+                    <textarea class="form-control" id="textarea-description" rows="3"></textarea>
+
+                </form>
+                
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-success" onClick="addApp(this.form)">Guardar</button>
+                </div>
+            </div>
+
+        </div>
+        </div>
+    </div>
+              
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/db.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/controlador.js"></script>
+</body>
+</html>
