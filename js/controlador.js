@@ -48,28 +48,33 @@ var amazonAppStoreDB;
       }
       categorias.push(categoria);
   }
-  
-  populateDropdownMenuButton();
 
-    (async function() {
-        
-        if(!await indexedDB.databases().name == nameDB){
-            
-            const database = new Database({ name: nameDB, categories: categorias })
+  (async function(){
+      
+      //Este método no funciona para Mozilla
+      const idxDB = await window.indexedDB.databases()
 
-            await database.createDB()
+      console.log(idxDB);
 
-            await categorias.forEach(async (category) => {
-                await database.add(category);
-            });
-            
-        } else{
-            console.log("Ya existe una bd")
-        }
+      if((idxDB.filter((collection) => collection.name == nameDB)).length == 0){
+          
+          const database = new Database({ name: nameDB, categories: categorias })
+          await database.createDB()
 
-    })();
+          console.log( categorias )
+
+          await categorias.forEach(async (category) => {
+              await database.add(category);
+          });
+          
+      } else{
+          console.log("Ya existe una bd")
+          populateDropdownMenuButton();
+      }
+  })()
 
 })();
+
 
 
 function addCarouseItem(images){
